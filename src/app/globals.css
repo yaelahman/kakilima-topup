@@ -1,0 +1,385 @@
+@import "tailwindcss";
+
+:root {
+  /* Cyan Signal — cooler than flat blue, not purple */
+  --background: #F0FDFA;
+  --background-end: #FFFFFF;
+  --foreground: #0F172A;
+
+  --primary: rgb(8, 145, 178);
+  --primary-rgb: 8, 145, 178;
+  --primary-dark: rgb(14, 116, 144);
+  --primary-dark-rgb: 14, 116, 144;
+  --primary-soft: #CFFAFE;
+
+  --secondary: rgb(19, 78, 74);
+  --secondary-rgb: 19, 78, 74;
+  --success: rgb(16, 185, 129);
+  --success-rgb: 16, 185, 129;
+  --base: #64748B;
+  --lol: rgb(255, 204, 1);
+
+  --font-display: var(--font-sora), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-plus-jakarta), ui-sans-serif, system-ui, sans-serif;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
+  --font-mono: var(--font-geist-mono);
+  --color-primary: var(--primary);
+  --color-primary-dark: var(--primary-dark);
+  --color-primary-soft: var(--primary-soft);
+  --color-primary-rgb: var(--primary-rgb);
+  --color-base: var(--base);
+  --color-success: var(--success);
+  --color-success-rgb: var(--success-rgb);
+}
+
+body {
+  background:
+    radial-gradient(ellipse 90% 50% at 10% -10%, rgba(var(--primary-rgb), 0.12), transparent 55%),
+    radial-gradient(ellipse 70% 40% at 90% 0%, rgba(var(--primary-rgb), 0.08), transparent 50%),
+    linear-gradient(180deg, var(--background) 0%, var(--background-end) 42%, #FFFFFF 100%);
+  background-attachment: fixed;
+  color: var(--foreground);
+  font-family: var(--font-body);
+  min-height: 100vh;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.35;
+  background-image:
+    linear-gradient(rgba(8, 145, 178, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(8, 145, 178, 0.035) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: linear-gradient(180deg, black 0%, transparent 70%);
+}
+
+main,
+footer {
+  position: relative;
+  z-index: 1;
+}
+
+header {
+  position: relative;
+}
+
+h1, h2, h3, .font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+/* Custom Swiper Pagination Styles */
+.swiper-pagination {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.swiper-pagination-bullet-active {
+  background: #fff;
+  transform: scale(1.2);
+}
+
+.swiper {
+  height: 100% !important;
+}
+
+.swiper-slide {
+  height: 100% !important;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  width: 40px !important;
+  height: 40px !important;
+  background: rgba(0, 0, 0, 0.5) !important;
+  border-radius: 50% !important;
+  color: white !important;
+  transition: all 0.3s ease !important;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background: rgba(0, 0, 0, 0.7) !important;
+  transform: scale(1.1) !important;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 16px !important;
+  font-weight: bold !important;
+}
+
+/* Banner swiper: animated border glow */
+.banner-swiper-glow {
+  --glow-primary: rgba(var(--primary-rgb), 0.5);
+  --glow-soft: rgba(var(--primary-rgb), 0.25);
+  box-shadow:
+    0 25px 50px -12px rgba(15, 23, 42, 0.18),
+    0 0 0 1px rgba(15, 23, 42, 0.06),
+    0 0 0 1px var(--glow-soft),
+    0 0 20px var(--glow-soft);
+  animation: banner-border-glow 2.5s ease-in-out infinite;
+}
+
+.banner-swiper-glow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(110deg,
+      transparent 0%,
+      var(--primary) 25%,
+      transparent 50%,
+      var(--primary) 75%,
+      transparent 100%);
+  background-size: 200% 100%;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 0;
+  animation: banner-glow-line 4s linear infinite;
+}
+
+@keyframes banner-border-glow {
+  0%,
+  100% {
+    box-shadow:
+      0 25px 50px -12px rgba(15, 23, 42, 0.18),
+      0 0 0 1px rgba(15, 23, 42, 0.06),
+      0 0 0 1px var(--glow-soft),
+      0 0 20px var(--glow-soft);
+  }
+
+  50% {
+    box-shadow:
+      0 25px 50px -12px rgba(15, 23, 42, 0.18),
+      0 0 0 1px rgba(15, 23, 42, 0.06),
+      0 0 0 2px rgba(var(--primary-rgb), 0.4),
+      0 0 30px var(--glow-soft),
+      0 0 50px var(--glow-primary);
+  }
+}
+
+@keyframes banner-glow-line {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.btn-shine,
+.animate-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shine:hover::before,
+.animate-shine::before {
+  animation: shine 1.5s ease-out infinite;
+}
+
+.btn-shine:hover::before,
+.animate-shine::before {
+  content: "";
+  position: absolute;
+  width: 100px;
+  height: 100%;
+  background-image: linear-gradient(120deg,
+      rgba(255, 255, 255, 0) 30%,
+      rgba(255, 255, 255, 0.8),
+      rgba(255, 255, 255, 0) 70%);
+  top: 0;
+  left: -100px;
+  opacity: 0.6;
+}
+
+@keyframes shine {
+  0% {
+    left: -100px;
+  }
+
+  60% {
+    left: 100%;
+  }
+
+  to {
+    left: 100%;
+  }
+}
+
+button {
+  cursor: pointer;
+}
+
+@keyframes footer-star-twinkle {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes footer-star-drift {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  25% {
+    transform: translate(2px, -2px) scale(1.05);
+  }
+
+  50% {
+    transform: translate(-1px, 1px) scale(0.95);
+  }
+
+  75% {
+    transform: translate(-2px, -1px) scale(1.02);
+  }
+
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+.animate-footer-star {
+  animation: footer-star-twinkle 2s ease-in-out infinite;
+}
+
+.animate-footer-star-drift {
+  animation: footer-star-drift 4s ease-in-out infinite;
+}
+
+@keyframes footer-wave {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(4%);
+  }
+}
+
+.animate-footer-wave {
+  animation: footer-wave 8s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes footer-glow {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.6;
+    transform: scale(1.02);
+  }
+}
+
+.animate-footer-glow {
+  animation: footer-glow 4s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes voucher-detail-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(var(--primary-rgb), 0.22);
+  }
+
+  50% {
+    box-shadow: 0 0 0 6px rgba(var(--primary-rgb), 0.12), 0 0 24px rgba(var(--primary-rgb), 0.32);
+  }
+}
+
+.voucher-detail-glow {
+  animation: voucher-detail-glow 1.8s ease-in-out infinite;
+}
+
+.voucher-detail-glow:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .voucher-detail-glow {
+    animation: none;
+  }
+
+  .banner-swiper-glow,
+  .banner-swiper-glow::before,
+  .animate-footer-star,
+  .animate-footer-star-drift,
+  .animate-footer-wave,
+  .animate-footer-glow {
+    animation: none;
+  }
+}
+
+.group:hover .product-title-shine::after {
+  animation: product-title-shine 0.6s ease-out;
+}
+
+.product-title-shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 40%;
+  background: linear-gradient(105deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.12) 45%,
+      rgba(255, 255, 255, 0.08) 50%,
+      transparent 100%);
+  border-radius: inherit;
+}
+
+@keyframes product-title-shine {
+  0% {
+    transform: translateX(-120%) skewX(-8deg);
+  }
+
+  100% {
+    transform: translateX(220%) skewX(-8deg);
+  }
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+  -webkit-text-fill-color: inherit !important;
+  background-color: transparent !important;
+}

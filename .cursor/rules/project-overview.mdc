@@ -1,0 +1,31 @@
+---
+description: KAKILIMA TOPUP frontend — stack, brand, and scope
+alwaysApply: true
+---
+
+# KAKILIMA TOPUP Frontend
+
+Next.js 15 (App Router) storefront for Indonesian game top-up. Package/brand: **KAKILIMA TOPUP**. Backend is a separate Laravel API (`NEXT_PUBLIC_API_URL`); this repo is frontend only.
+
+## Stack
+- React 19, TypeScript, Tailwind CSS 4
+- NextAuth (Credentials) + Sanctum Bearer token in JWT session
+- Axios via `src/lib/client.ts` (`httpClient` / `createAxiosInstance`)
+- TanStack Query for fetching; Redux Toolkit present but prefer Query for server data
+- Formik + Yup for forms; Framer Motion / Swiper for UI
+
+## Brand & copy
+- Site name from `SITE_NAME` in `src/lib/site-config.ts` (default `KAKILIMA TOPUP`)
+- User-facing UI language: **Bahasa Indonesia**
+- Do not reintroduce "WXSTORE" as display brand text
+
+## Scope
+- Guest checkout is allowed; auth required only for `/account/*`, `/dashboard/*`
+- Do not add admin panel UI unless explicitly requested
+- Prefer editing existing patterns over new abstractions
+
+## Key paths
+- Pages: `src/app/`
+- UI: `src/components/`
+- API wrappers: `src/services/`
+- Auth/client: `src/lib/auth.ts`, `src/lib/client.ts`

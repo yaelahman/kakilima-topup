@@ -1,8 +1,8 @@
 /**
  * Central site config for SEO and metadata. Driven by env: NEXT_PUBLIC_SITE_URL, NEXT_PUBLIC_SITE_NAME.
  */
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://wxstoreid.com";
-export const SITE_NAME = process.env.NEXT_PUBLIC_SITE_NAME || "WXSTORE";
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://https://kakilimatopup.com";
+export const SITE_NAME = process.env.NEXT_PUBLIC_SITE_NAME || "KAKILIMA TOPUP";
 export const SITE_DEFAULT_TITLE =
   process.env.NEXT_PUBLIC_SITE_TITLE ||
   `${SITE_NAME} - Top Up Game Murah dan Cepat No 1 Di Indonesia`;

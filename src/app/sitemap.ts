@@ -19,7 +19,7 @@ async function getProductSlugs(): Promise<string[]> {
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://wxstoreid.com").replace(/\/$/, "");
+  const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://https://kakilimatopup.com").replace(/\/$/, "");
 
   const staticPages: MetadataRoute.Sitemap = [
     {

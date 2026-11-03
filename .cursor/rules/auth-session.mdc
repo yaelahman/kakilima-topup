@@ -1,0 +1,32 @@
+---
+description: NextAuth session, middleware, and account auth rules
+globs: src/lib/auth.ts,src/middleware.ts,src/app/auth/**/*.{tsx,ts},src/app/api/auth/**/*.ts,src/app/account/**/*.{tsx,ts},src/app/dashboard/**/*.{tsx,ts},src/lib/use-auth-client.ts,src/components/utils/SessionExpiryGuard.tsx,src/types/next-auth.d.ts
+alwaysApply: false
+---
+
+# Auth & session
+
+## Stack
+- NextAuth Credentials → Laravel `POST /auth/login` → Sanctum `access_token`
+- Token lives in NextAuth JWT (`accessToken`, `accessTokenExpiresAt`, `role`)
+- Client API calls: pass Bearer via `useAuthClient()` / `session.accessToken`
+
+## Session validity
+- Treat as logged in only if `status === "authenticated"` **and** `session.accessToken` exists **and** no `session.error` (e.g. `AccessTokenExpired`)
+- Middleware already guards `/account`, `/dashboard`, `/profile`, `/admin` — don't reimplement redirects inconsistently
+- `/admin` requires `role === "superadmin"`; this frontend has little/no admin UI
+
+## Auth pages
+- Login/register: Indonesian copy; use `SITE_NAME` from site-config
+- Respect `callbackUrl` query after login
+- If already valid session on `/auth/*`, redirect away (middleware + page checks)
+- Register UI may collect phone; API currently expects `name`, `email`, `password`, `password_confirmation`
+
+## Account area
+- Dashboard / balance / settings / API keys need Bearer token
+- Balance payment on order page depends on same session
+- On API 401 with Bearer: use client sign-out flow (avoid hard redirect cookie loops)
+
+## Roles
+- Display via `roleLabel()` in `src/lib/role.ts`: `member` | `superadmin`
+- Do not add OAuth (Google/Facebook) unless backend supports it — UI icons alone are not enough

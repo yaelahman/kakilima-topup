@@ -3,7 +3,7 @@ module.exports = {
   apps: [
     {
       name: "main-site",
-      cwd: "/var/www/wxstore-frontend", // CHANGE THIS to your absolute path
+      cwd: "/var/www/kakilima-topup", // CHANGE THIS to your absolute path
       script: "node_modules/next/dist/bin/next",
       args: "start -p 3000",
       instances: 1, // Use 1 to prevent resource exhaustion on small VPS
@@ -14,7 +14,7 @@ module.exports = {
         NODE_ENV: "production",
         NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
         NEXTAUTH_URL: process.env.NEXTAUTH_URL,
-        NEXT_PUBLIC_API_URL: 'https://api.wxstoreid.com/api',
+        NEXT_PUBLIC_API_URL: 'https://api.https://kakilimatopup.com/api',
       },
     },
   ],

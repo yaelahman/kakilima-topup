@@ -1,0 +1,34 @@
+---
+description: Brand colors, typography, and UI design tokens
+globs: src/app/globals.css,tailwind.config.ts,src/components/**/*.{tsx,ts},src/app/**/*.{tsx,css}
+alwaysApply: false
+---
+
+# Brand design tokens
+
+Match existing CSS variables in `src/app/globals.css`. Do not invent a new palette (no purple-on-white, no cream+terracotta).
+
+## Colors
+| Token | Value |
+|-------|--------|
+| background | `#F0FDFA` |
+| background-end | `#FFFFFF` |
+| foreground | `#0F172A` |
+| primary | `#0891B2` / `rgb(8, 145, 178)` |
+| primary-dark | `#0E7490` |
+| primary-soft | `#CFFAFE` |
+| secondary | `#134E4A` |
+| success | `#10B981` |
+| base (muted) | `#64748B` |
+| accent (badge only) | `#FFCC01` |
+
+## Usage
+- Prefer Tailwind tokens: `bg-primary`, `text-primary-dark`, `bg-primary-soft`, `text-base`, etc.
+- Page atmosphere: soft cyan radial gradients + light grid (already on `body`) — keep new screens consistent
+- Shadows: `shadow-brand` / `shadow-brand-lg` from `tailwind.config.ts`
+- Fonts: body = Plus Jakarta Sans (`font-sans`); display/headings = Sora (`font-display`)
+
+## UI habits
+- Mobile-first; bottom nav exists for small screens
+- Order page: sticky summary + confirmation modal before submit
+- Avoid card clutter in heroes; one job per section

@@ -53,7 +53,7 @@ export default function Order({
     const paymentSectionRef = useRef<HTMLDivElement>(null);
     const router = useRouter();
 
-    const storageKey = `wxstore:order:${product?.slug || product?.id || 'default'}`;
+    const storageKey = `kakilima:order:${product?.slug || product?.id || 'default'}`;
     const initialDenom = getInitialDenom(product, initialPriceId);
     const { data: session, status } = useSession();
     const token = session?.accessToken ?? null;

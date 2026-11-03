@@ -1,0 +1,27 @@
+---
+description: Next.js App Router and React patterns for this codebase
+globs: src/app/**/*.{tsx,ts},src/components/**/*.{tsx,ts}
+alwaysApply: false
+---
+
+# Next.js / React
+
+## App Router
+- Pages live in `src/app/**/page.tsx`; SEO metadata in colocated `layout.tsx` or `src/app/meta.ts`
+- Use `SITE_NAME` / `SITE_URL` from `@/lib/site-config` for titles and copy — do not hardcode brand strings
+- Client components: add `"use client"` only when needed (hooks, events, browser APIs)
+
+## Data fetching
+- Prefer TanStack Query (`useQuery` / `useMutation`) with keys like `["homepage", "banners"]`
+- Auth-aware calls: `useSession` + pass `accessToken` into services
+- Middleware protects `/account`, `/dashboard`, `/profile`, `/admin` — do not duplicate that logic in every page
+
+## Components
+- Feature folders: `components/home`, `order`, `invoice`, `layouts`
+- Reuse `CustomLink` for internal navigation when progress bar / SPA feel is needed
+- Order draft localStorage key prefix: `kakilima:order:`
+
+## Auth UX
+- Login/register under `src/app/auth/`
+- Guest can complete order; balance payment (`provider: "balance"`, id `0`) only when logged in
+- Roles: `member` | `superadmin` (`src/lib/role.ts`) — no admin UI in this frontend unless requested

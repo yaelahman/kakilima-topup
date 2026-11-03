@@ -1,0 +1,37 @@
+---
+description: Checkout / order page flow and invariants
+globs: src/components/order/**/*.{tsx,ts},src/app/order/**/*.{tsx,ts},src/services/order.service.ts,src/components/invoice/**/*.{tsx,ts},src/app/invoice/**/*.{tsx,ts},src/app/track/**/*.{tsx,ts}
+alwaysApply: false
+---
+
+# Order / invoice / track
+
+## Checkout steps (keep this order)
+1. Product info + denom (`product_type`) — use `DiamondSelector`
+2. Voucher quantity only if voucher product (`is_voucher` / `voucher_count`)
+3. Dynamic buyer fields from `product.product_form[]` — `BuyerInfoForm`
+4. Optional ID check via `GET /account-check` when `enableCheckerId`
+5. Payment groups from API — Balance (`id: 0`, `provider: "balance"`) **only if logged in**
+6. WhatsApp + email + optional promo
+7. Sticky `SummaryBar` → `PaymentConfirmationModal` → `POST /transaction/store` → `/invoice/{invoice}`
+
+## Do / don't
+- Do validate with Formik + Yup (Indonesian error messages)
+- Do persist WhatsApp/email draft under `kakilima:order:{slug}`
+- Do support query prefs `?promo=` and `?price_id=`
+- Do stringify `user_information` as JSON for store payload
+- Don't skip confirmation modal
+- Don't allow balance payment for guests
+- Don't invent new payment providers client-side — only render API groups
+
+## Promo
+- `POST /promo/check` with `code`, `id_product`, `id_product_type`, `price`, `userData[{name,value}]`
+- `discount_type`: `0` = fixed Rp, `1` = percent — use `formatPromoDiscountLabel` when displaying
+
+## Invoice
+- Poll `GET /transaction/invoice/{invoice}` ~every 10s while status `0`
+- Show VA / rekening / `qr_url`, copy actions, ~1h timer when waiting payment
+- Status map: `0` menunggu · `1` lunas · `2` diproses · `21` pending · `3` berhasil · `100` gagal
+
+## Track
+- Public page; search via `GET /transaction/latest?q=` (min ~2 chars in UI)

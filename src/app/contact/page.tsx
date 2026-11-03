@@ -22,7 +22,7 @@ export default function Contact() {
         staleTime: 5 * 60 * 1000,
     });
 
-    const supportEmail = contact?.email ?? "support@wxstoreid.com";
+    const supportEmail = contact?.email ?? "support@https://kakilimatopup.com";
     const whatsappDisplay = contact?.whatsapp ?? "-";
     const whatsappLink = contact?.whatsapp_link;
     const hours = contact?.operational_hours ?? "Senin - Minggu, 24 Jam Non-Stop";

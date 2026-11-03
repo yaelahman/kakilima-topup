@@ -35,7 +35,7 @@ export function Footer() {
         staleTime: 5 * 60 * 1000,
     });
 
-    const email = contact?.email ?? "support@wxstoreid.com";
+    const email = contact?.email ?? "support@https://kakilimatopup.com";
     const whatsappDisplay = contact?.whatsapp ?? null;
     const whatsappLink = contact?.whatsapp_link ?? "/contact";
     const hours = contact?.operational_hours ?? "Senin - Minggu, 24 Jam Non-Stop";

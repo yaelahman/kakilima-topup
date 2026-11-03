@@ -37,12 +37,12 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'api.wxstoreid.com',
+        hostname: 'api.https://kakilimatopup.com',
         pathname: '/**',
       },
       {
         protocol: 'https',
-        hostname: 'wxstoreid.com',
+        hostname: 'https://kakilimatopup.com',
         pathname: '/**',
       },
       {

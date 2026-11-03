@@ -1,0 +1,38 @@
+---
+description: API client and service layer conventions
+globs: src/services/**/*.ts,src/lib/client.ts,src/lib/auth.ts,src/lib/use-auth-client.ts
+alwaysApply: false
+---
+
+# API & services
+
+## Client
+- Call backend only through `httpClient` / helpers in `src/lib/client.ts`
+- Pass Sanctum Bearer via `token` argument when the route needs auth
+- POST flows may need Sanctum CSRF (`/sanctum/csrf-cookie`) — keep existing client behavior
+- On 401 with a Bearer token, session sign-out is handled in the client — do not hard-redirect alone
+
+## Service files
+- One domain per file under `src/services/` (e.g. `order.service.ts`)
+- Export async functions; keep routes as path strings relative to `NEXT_PUBLIC_API_URL`
+
+```typescript
+// ✅ GOOD
+export const getProduct = async (slug: string, token?: string | null) => {
+  return httpClient({ route: `/product/${slug}`, token });
+};
+```
+
+## Important endpoints
+- Homepage: `/homepage/*`
+- Order: `GET /product/{slug}`, `POST /promo/check`, `POST /transaction/store`
+- Invoice: `GET /transaction/invoice/{invoice}` (poll ~10s when status `0`)
+- Track: `GET /transaction/latest?q=`
+- Auth: `POST /auth/login`, `POST /auth/register`
+- Account: `/dashboard/*`, `/balance`, `/auth/user`, `/api-keys`
+
+## Transaction status
+`0` menunggu bayar · `1` lunas · `2` diproses · `21` pending · `3` berhasil · `100` gagal
+
+## Store payload shape
+`product_id`, `price_id`, `price_type`, `user_information` (JSON string), `whatsapp`, `email`, `payment_method`, optional `code`, `quantity`

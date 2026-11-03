@@ -164,7 +164,7 @@ Content-Type: application/json
 {`{
   "success": true,
   "message": "Berhasil membuat pesanan, halaman akan dialihkan!",
-  "invoice": "WXSTRX1234567890",
+  "invoice": "KKLMTX1234567890",
   "amount": 85000
 }`}
           </pre>
@@ -182,7 +182,7 @@ Content-Type: application/json
             <span>GET /external/transactions/{`{invoice}`}</span>
           </div>
           <pre className="bg-gray-900 text-gray-100 text-xs rounded-lg p-4 overflow-x-auto">
-{`GET ${API_BASE}/external/transactions/WXSTRX1234567890
+{`GET ${API_BASE}/external/transactions/KKLMTX1234567890
 X-Api-Key: wx_your_api_key`}
           </pre>
           <p className="text-xs text-gray-500">Contoh respon:</p>
@@ -190,7 +190,7 @@ X-Api-Key: wx_your_api_key`}
 {`{
   "success": true,
   "data": {
-    "invoice": "WXSTRX1234567890",
+    "invoice": "KKLMTX1234567890",
     "amount": 85000,
     "status": 3,
     "status_text": "Berhasil",
@@ -220,7 +220,7 @@ X-Api-Key: wx_your_api_key`}
           </div>
           <p className="text-xs text-gray-500">Headers:</p>
           <pre className="bg-gray-900 text-gray-100 text-xs rounded-lg p-4 overflow-x-auto">
-{`POST https://your-webhook-url.com/wxstore
+{`POST https://your-webhook-url.com/kakilima-topup
 Content-Type: application/json
 X-Api-Key-Id: 12
 X-Api-Key-Name: Server Utama
@@ -229,7 +229,7 @@ X-Webhook-Signature: &lt;HMAC-SHA256 body menggunakan webhook_secret&gt;`}
           <p className="text-xs text-gray-500">Body (JSON):</p>
           <pre className="bg-gray-100 text-gray-800 text-xs rounded-lg p-4 overflow-x-auto">
 {`{
-  "invoice": "WXSTRX1234567890",
+  "invoice": "KKLMTX1234567890",
   "status": 3,
   "status_text": "Berhasil",
   "amount": 85000,

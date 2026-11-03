@@ -132,9 +132,9 @@ export default function ProductSEO({ product, slug }: ProductSEOProps) {
             }
         },
         "sameAs": [
-            "https://www.facebook.com/wxstore",
-            "https://www.instagram.com/wxstore",
-            "https://twitter.com/wxstore"
+            "https://www.facebook.com/kakilimatopup",
+            "https://www.instagram.com/kakilimatopup",
+            "https://twitter.com/kakilimatopup"
         ]
     };
 

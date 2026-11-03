@@ -1,4 +1,4 @@
-# WXStore Frontend
+# KAKILIMA TOPUP
 
 A modern Next.js application with TypeScript, Tailwind CSS, Redux Toolkit, and React Hot Toast.
 
@@ -23,7 +23,7 @@ A modern Next.js application with TypeScript, Tailwind CSS, Redux Toolkit, and R
 1. Clone the repository:
 ```bash
 git clone <your-repo-url>
-cd wxstore-frontend
+cd kakilima-topup
 ```
 
 2. Install dependencies:
